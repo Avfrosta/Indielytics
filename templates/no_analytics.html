@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+Analytics for {{ domain }}
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="/static/charts.min.css">
+<link rel="stylesheet" href="/static/analytics.css">
+{% endblock %}
+
+{% block content %}
+
+<h2><a href="https://{{ domain }}">{{ domain }}</a></h2>
+<p class="standard-text">There's no analytics for {{ domain }} yet. Has the script been added to the HTML?</p>
+
+{% endblock %}

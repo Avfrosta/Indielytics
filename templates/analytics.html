@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+Analytics for {{ domain }}
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="/static/charts.min.css">
+<link rel="stylesheet" href="/static/analytics.css">
+{% endblock %}
+
+{% block content %}
+
+<h2><a href="https://{{ domain }}">Analytics for {{ domain }}</a></h2>
+
+<div class="metrics-container">
+    <div class="metric-card">
+        <h3>Visitors past 10 days</h3>
+        <p>Total: {{ metrics.visitors|sum }}</p>
+        <table class="charts-css column data-outside data-spacing-5">
+            <tbody>
+                {% for i in range(metrics.visitors|length) %}
+                <tr>
+                    <td style="--size: {{ metrics.visitor_sizes[i] }}">
+                        <span class="data">{{ metrics.visitors[i] }}</span>
+                        <span class="tooltip">{{ metrics.dates[i] }}: {{ metrics.visitors[i] }} visitors</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="metric-card">
+        <h3>Views past 10 days</h3>
+        <p>Total: {{ metrics.views|sum }}</p>
+        <table class="charts-css column data-outside data-spacing-5">
+            <tbody>
+                {% for i in range(metrics.views|length) %}
+                <tr>
+                    <td style="--size: {{ metrics.view_sizes[i] }}">
+                        <span class="data">{{ metrics.views[i] }}</span>
+                        <span class="tooltip">{{ metrics.dates[i] }}: {{ metrics.views[i] }} views</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

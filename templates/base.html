@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Indielytics.link{% endblock %}</title>
+    <link rel="stylesheet" href="/static/base.css">
+    {% block extra_css %}{% endblock %}
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <script>
+    (function() {
+        var url = window.location.hostname + window.location.pathname;
+        var timestamp = new Date().toISOString();
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://www.indielytics.link/track", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.send(JSON.stringify({
+            domain: url,
+            timestamp: timestamp
+        }));
+    })();
+    </script>
+</head>
+<body>
+    <header>
+        <h1 class="website-name"><a href="/">Indielytics</a></h1>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Contact me at <a class="link" href="mailto:hugo.frozenweb@gmail.com">hugo.frozenweb@gmail.com</a> for data deletion requests.</p>
+        <p>Check out <a href="https://www.simplytics.dev" class="link">simplytics.dev</a> for more advanced web analytics.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('variables.css');
+
+body {
+    font-family: "Rubik", sans-serif;
+    color: rgb(43, 43, 43);
+    font-size: 15px;
+    font-weight: 500;
+    background-color: rgb(249, 250, 251);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+header {
+    margin-top: 35px;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    margin-top: 40px;
+    padding: 10px 25px;
+    border-top: 1px solid var(--grey-color);
+    text-align: center;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+}
+
+h2 {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--primary-color);
+}
+
+.website-name {
+    color: var(--primary-color);
+    margin: 0;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.link {
+    color: rgb(80, 80, 80);
+    transition: color 0.3s ease;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.link:hover {
+    color: inherit;
+}
+
+.standard-button {
+    background-color: #fff; /* White text color for contrast */
+    color: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 0.7rem 1.2rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 6px; /* Slightly rounded corners */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.standard-button:hover {
+    background-color: var(--primary-light-color); /* Primary color with 80% opacity */
+    transform: translateY(-2px);
+}
+
+.standard-button:active {
+    background-color: var(--primary-light-color); /* Primary color with 60% opacity */
+    transform: translateY(0);
+}
+
+
+main {
+    margin-left: 140px;
+    margin-right: 140px;
+}
+
+.standard-text {
+    font-size: 1.2rem;
+    font-weight: 450;
+    text-align: center;
+    color: var(--grey-color);
+}
+
+@media screen and (max-width: 900px) {
+    header {
+        margin-top: 10px;
+    }
+
+    main {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+

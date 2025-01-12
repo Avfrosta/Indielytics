@@ -1,0 +1,53 @@
+.metrics-container {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.metric-card {
+    flex: 1;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.metric-card h3 {
+    margin-top: 0;
+}
+
+/* Charts styling */
+.charts-css {
+    max-width: 100%;
+    margin: 1rem 0;
+}
+
+.metric-card .column td {
+    --color: var(--secondary-color);
+    border-radius: 5px;
+    border: 2px solid var(--primary-color);
+}
+
+.tooltip {
+    position: absolute;
+    display: none;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+td:hover .tooltip {
+    display: block;
+}
+
+.data {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .metrics-container {
+        flex-direction: column;
+    }
+}

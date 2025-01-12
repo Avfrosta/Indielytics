@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}
+Indielytics
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="/static/charts.min.css">
+<link rel="stylesheet" href="/static/index.css">
+{% endblock %}
+
+{% block content %}
+<div class="featured-holder">
+    <a href="https://www.producthunt.com/posts/indielytics?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-indielytics" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=740022&theme=neutral" alt="Indielytics - Public&#0032;web&#0032;analytics&#0032;with&#0032;a&#0032;twist | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+</div>
+
+<h1 class="introduction">Web analytics for the community</h1>
+<p class="standard-text">Free and transparent. No signup required. Anyone can get our analytics (and get a <span>free backlink</span>) by simply adding our lightweight script to their HTML. There is no option to keep your analytics private. It's open for everyone to see.</p>
+
+<h2>Websites using Indielytics</h2>
+
+<div class="showcase">
+    {% for domain, data in stats.items() %}
+    <a href="{{ domain }}">
+        <div class="showcase-item">
+            <h3>{{ domain }}</h3>
+            <p>Visitors today: {{ data.daily_visitors[-1] }}</p>
+            <table class="charts-css column hide-data data-spacing-5">
+                <tbody>
+                    {% for day_count in data.daily_visitors[-10:] %}
+                    <tr>
+                        <td style="--size: {{ day_count / data.max_visitors }}"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+<h2>How it works</h2>
+<p class="standard-text">Websites can add our script to their HTML. This script sends the user-agent and IP-adress of the visitor to us. The IP-adress of the visitor is trunctuated before being combined with the user-agent and domain of the tracked website. This string is then hashed with a daily rotating salt before being stored in the DB. In the DB the hashed string is only stored for 24 hours. Using the hashed string we can count unique visitors while staying compliant with GDPR.</p>
+<p class="standard-text in-short">In short:</p>
+<pre class="code-line">
+    <code class="standard-text">hash(daily_salt + trunctuated_ip_adress + user_agent + website_domain)</code>
+</pre>
+
+<h2>Get started</h2>
+<p class="standard-text">Add the lightweight script to your websites HTML. Make sure it's in the base file, otherwise you might need to add it to every single page manually. You can then find the analytics at www.indielytics.link/your-website-domain</p>
+<pre class="code-box">
+    <code>
+(function() {
+    var url = window.location.hostname + window.location.pathname;
+    var timestamp = new Date().toISOString();
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://www.indielytics.link/track", true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({
+        domain: url,
+        timestamp: timestamp
+    }));
+})();
+    </code>
+</pre>
+<a href="#" onclick="copyCode(event)" class="link">Copy Snippet</a>
+
+<script>
+function copyCode(event) {
+    event.preventDefault();
+    var codeBox = document.querySelector('.code-box code');
+    var text = codeBox.textContent;
+    navigator.clipboard.writeText(text).then(function() {
+        console.log('Code copied to clipboard');
+    });
+}
+</script>
+
+
+
+{% endblock %}
